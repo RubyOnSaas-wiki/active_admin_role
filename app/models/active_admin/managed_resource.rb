@@ -19,6 +19,14 @@ module ActiveAdmin
     end
 
     class << self
+      def ransackable_attributes(auth_object = nil)
+        %w[action class_name created_at id name updated_at]
+      end
+
+      def ransackable_associations(auth_object = nil)
+        %w[permissions]
+      end
+
       def reload
         ActiveAdmin::PermissionReloader.reload
       end

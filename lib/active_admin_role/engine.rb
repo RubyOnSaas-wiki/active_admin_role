@@ -11,7 +11,7 @@ module ActiveAdminRole
 
       ActiveSupport.on_load :after_initialize do
         require "active_admin_role/active_admin/resource_controller"
-        ::ActiveAdmin::ResourceController.send :include, ActiveAdminRole::ActiveAdmin::ResourceController
+        ::ActiveAdmin::ResourceController.include ActiveAdminRole::ActiveAdmin::ResourceController
       end
     end
   end

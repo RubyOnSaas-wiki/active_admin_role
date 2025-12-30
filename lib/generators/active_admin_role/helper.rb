@@ -2,7 +2,7 @@ module ActiveAdminRole
   module Generators
     module Helper
       def self.included(klass)
-        klass.send :extend, ClassMethods
+        klass.extend ClassMethods
       end
 
       private
@@ -41,19 +41,20 @@ module ActiveAdminRole
         end
 
         def migration_class_name
-          if Rails::VERSION::MAJOR >= 5
-            "ActiveRecord::Migration[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]"
-          else
-            "ActiveRecord::Migration"
-          end
+          "ActiveRecord::Migration[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]"
         end
 
         module ClassMethods
           # Define the next_migration_number method (necessary for the migration_template method to work)
           def next_migration_number(dirname)
-            if ActiveRecord::Base.timestamped_migrations
-              sleep 1 # make sure each time we get a different timestamp
-              Time.new.utc.strftime("%Y%m%d%H%M%S")
+            next_migration_ts = Time.now.utc.strftime("%Y%m%d%H%M%S")
+
+            if ActiveRecord.timestamped_migrations
+              current = current_migration_number(dirname)
+              if current.to_s >= next_migration_ts
+                next_migration_ts = (current.to_i + 1).to_s
+              end
+              next_migration_ts
             else
               "%.3d" % (current_migration_number(dirname) + 1)
             end

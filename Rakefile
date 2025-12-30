@@ -17,14 +17,22 @@ task :setup do
     -m spec/support/rails_template.rb \
     --skip-spring \
     --skip-listen \
-    --skip-turbolinks \
     --skip-bootsnap \
     --skip-test \
     --skip-git \
-    --skip-yarn \
-    --skip-puma \
     --skip-action-mailer \
-    --skip-action-cable
+    --skip-action-cable \
+    --skip-action-mailbox \
+    --skip-action-text \
+    --skip-active-job \
+    --skip-active-storage \
+    --skip-hotwire \
+    --skip-jbuilder \
+    --skip-system-test \
+    --skip-docker \
+    --skip-kamal \
+    --skip-solid \
+    --skip-thruster
   COMMAND
 end
 

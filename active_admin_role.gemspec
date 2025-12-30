@@ -14,9 +14,9 @@ Gem::Specification.new do |gem|
   gem.files         = `git ls-files -z`.split("\x0").reject {|f| f.match(%r{^(test|spec|features)/}) }
   gem.require_paths = ["lib"]
 
-  gem.required_ruby_version = ">= 2.2.2"
+  gem.required_ruby_version = ">= 3.0.0"
 
-  gem.add_dependency "activeadmin", ">= 1.2.0"
-  gem.add_dependency "cancancan",   ">= 1.15.0"
-  gem.add_dependency "railties",    ">= 5.0.0"
+  gem.add_dependency "activeadmin", ">= 2.13.0"
+  gem.add_dependency "cancancan",   ">= 3.0.0"
+  gem.add_dependency "railties",    ">= 6.1.0"
 end

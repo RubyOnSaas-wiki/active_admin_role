@@ -59,16 +59,20 @@ end
 # == Capybara
 require "capybara/rails"
 require "capybara/rspec"
-require "capybara/poltergeist"
+require "selenium-webdriver"
 
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, js_errors: true,
-                                         timeout: 80,
-                                         debug: false,
-                                         phantomjs_options: ["--debug=no", "--load-images=no"])
+Capybara.register_driver :headless_chrome do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument("--headless=new")
+  options.add_argument("--no-sandbox")
+  options.add_argument("--disable-dev-shm-usage")
+  options.add_argument("--disable-gpu")
+  options.add_argument("--window-size=1400,900")
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
-Capybara.javascript_driver = :poltergeist
+Capybara.javascript_driver = :headless_chrome
 
 # == Shoulda Matchers
 require "shoulda-matchers"
@@ -81,6 +85,10 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+# == Database Cleaner
+require "database_cleaner/active_record"
+DatabaseCleaner = DatabaseCleaner::ActiveRecord
 
 # == Support
 def prepare_admin_users
