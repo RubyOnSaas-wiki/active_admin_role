@@ -3,11 +3,7 @@ module ActiveAdminRole
     module ResourceController
       def self.included(klass)
         klass.class_eval do
-          if Rails::VERSION::MAJOR >= 4
-            before_action :authorize_access_resource!, except: %i[index new create show edit update destroy]
-          else
-            before_filter :authorize_access_resource!, except: %i[index new create show edit update destroy]
-          end
+          before_action :authorize_access_resource!, except: %i[index new create show edit update destroy]
         end
       end
 

@@ -26,6 +26,14 @@ module ActiveAdmin
     end
 
     class << self
+      def ransackable_attributes(auth_object = nil)
+        %w[created_at id managed_resource_id role state updated_at]
+      end
+
+      def ransackable_associations(auth_object = nil)
+        %w[managed_resource]
+      end
+
       def update_all_from_managed_resources
         ::ActiveAdmin::ManagedResource.all.find_each do |managed_resource|
           manageable_roles.values.each do |value_of_role|

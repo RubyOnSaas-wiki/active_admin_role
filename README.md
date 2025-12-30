@@ -1,7 +1,5 @@
 # ActiveAdminRole
 
-*CAUTION: Sorry, this gem is not maintained now. I'm looking for maintainer has motivation for apps using ActiveAdmin. Please somebody help me. [See more](https://github.com/activeadmin-plugins/active_admin_role/issues/19)*
-
 Role based authorization with CanCanCan for Active Admin
 
 ## Installation
@@ -16,9 +14,10 @@ And run `bundle`
 
 ## Dependencies
 
-- rails (>= 5.0.0)
-- activeadmin (>= 1.2.0)
-- cancancan (>= 1.15.0)
+- Ruby >= 3.0.0
+- Rails >= 6.1.0 (tested with 7.0, 7.1, 7.2)
+- activeadmin >= 2.13.0
+- cancancan >= 3.0.0
 
 ## Sample application
 

@@ -5,7 +5,7 @@ class CreateActiveAdminPermissions < <%= migration_class_name %>
       t.integer :role,                null: false, limit: 1, default: 0
       t.integer :state,               null: false, limit: 1, default: 0
 
-      t.timestamp null: false
+      t.timestamps null: false
     end
 
     add_index :active_admin_permissions, [:managed_resource_id, :role], unique: true, name: "active_admin_permissions_index"
